@@ -26,7 +26,7 @@ The site is plain HTML/CSS with no build dependencies. GitHub Pages serves `main
 - Replace `assets/figures/figure-1.webp` through `figure-5.webp` to update previews.
 - Replace the corresponding `assets/pdfs/figure-N.pdf` files to update downloadable figures.
 - Update image `width` and `height` attributes when aspect ratios change.
-- When paper/data/code links exist, replace their `span.pill.pending` elements with `a.pill` links. Remove the “Coming soon” labels.
+- When paper/data/code links exist, replace the disabled `button.resource` elements with `a.resource` links and update the release note. Add the arXiv link when available.
 - Add the finalized authors/affiliations, abstract, release licenses and BibTeX only when confirmed.
 - Push to `main`; GitHub Pages automatically republishes the site.
 
@@ -41,3 +41,5 @@ Then visit http://localhost:8000.
 ## Attribution and rights
 
 Project-page organization is inspired by [MC-Bench](https://xuyunqiu.github.io/MC-Bench/). Website implementation is original; no template code was copied. Scientific figures may contain excerpts of third-party publications. No blanket license for the figures or future dataset is granted by this repository; release-specific licensing will be documented separately.
+
+Resource icons are from Font Awesome Free (CC BY 4.0); see `assets/icons/LICENSE.txt`.
