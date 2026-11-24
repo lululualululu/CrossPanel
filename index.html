@@ -5,17 +5,16 @@
   <title>CrossPanel: Exposing the Answer–Evidence Gap in Scientific Figure Understanding</title>
   <meta name="description" content="A benchmark of 2,650 scientific-figure questions examining whether correct model answers are grounded in the right experimental evidence.">
   <meta property="og:title" content="CrossPanel: Exposing the Answer–Evidence Gap in Scientific Figure Understanding"><meta property="og:type" content="website"><meta property="og:url" content="https://lululualululu.github.io/CrossPanel/"><meta property="og:image" content="https://lululualululu.github.io/CrossPanel/assets/figures/figure-1.webp">
-  <link rel="canonical" href="https://lululualululu.github.io/CrossPanel/"><link rel="icon" href="assets/favicon.svg"><link rel="stylesheet" href="style.css">
-  <script defer src="site.js"></script>
+  <link rel="canonical" href="https://lululualululu.github.io/CrossPanel/"><link rel="icon" href="assets/favicon.svg"><link rel="stylesheet" href="assets/paper-9ec4515.css">
 </head>
 <body>
 <a class="skip" href="#overview">Skip to content</a>
-<main id="main">
+<main>
 <header class="hero">
   <h1><span>CrossPanel</span>Exposing the Answer–Evidence Gap<br class="desktop-break"> in Scientific Figure Understanding</h1>
   <p class="authors"><span>Zhengyang Lu<sup>*</sup></span>, <span>QianhongWen<sup>*</sup></span>, <span>Chenpeng Wang<sup>*</sup></span>, <span>Qiang Huang</span>, <span>Ziyang Ling</span>, <span>Huan Li</span>, <span>Chenziao</span>, <span>Yibo Qiu</span>, <span>Xiaojie Cheng</span></p>
   <p class="credit">* Equal contribution · arXiv, November 2026</p>
-  <nav class="publication-links" aria-label="Resources"><a class="resource" href="https://arxiv.org/pdf/2611.28641"><img alt="" width="16" height="16" src="assets/icons/file-pdf.svg">Paper</a><a class="resource" href="https://github.com/lululualululu/CrossPanel"><img alt="" width="16" height="16" src="assets/icons/github.svg">GitHub</a><a class="resource" href="#results"><img alt="" width="16" height="16" src="assets/icons/chart-column.svg">Results</a><a class="resource" href="#samples">Samples</a><a class="resource" href="#citation">BibTeX</a></nav>
+  <nav class="publication-links" aria-label="Resources"><a class="resource" href="https://arxiv.org/pdf/2611.28641"><img alt="" width="16" height="16" src="assets/icons/file-pdf.svg">Paper</a><a class="resource" href="https://github.com/lululualululu/CrossPanel"><img alt="" width="16" height="16" src="assets/icons/github.svg">GitHub</a><a class="resource" href="#results"><img alt="" width="16" height="16" src="assets/icons/chart-column.svg">Results</a><a class="resource" href="#citation">BibTeX</a></nav>
 </header>
 <section id="overview" class="content" aria-label="Overview">
   <figure><a class="figure-link" href="assets/pdfs/figure-1.pdf" aria-label="Open Figure 1 as PDF"><img src="assets/figures/figure-1.webp" width="2400" height="1414" alt="InternVL3.5-38B identifies the correct conformation but misreads its change. Qwen3.5-4B identifies T cells but binds them to the wrong markers." fetchpriority="high"></a><figcaption><span>Two readings of scientific evidence across panels.</span><a href="assets/pdfs/figure-1.pdf">Figure 1 PDF</a></figcaption></figure>
@@ -26,29 +25,12 @@
   <p class="prose">For 251 questions, we also assess the explanation. Does it identify the right object and conditions, link them across panels, and read the evidence at the stated location?</p>
   <div class="related"><a href="assets/pdfs/figure-2.pdf">Dataset construction</a><a href="assets/pdfs/figure-3.pdf">Dataset composition</a></div>
 </section>
-<section id="samples" class="content section explorer" aria-label="Explore public samples">
-<h2>Try a sample</h2><div class="explorer-top"><label><span class="sr">Choose a sample</span><select id="sample-pick" disabled>
-<option value="CP-002421">Robotics</option><option value="CP-002425">Fluid mechanics</option><option value="CP-000150">Neural networks</option><option value="CP-000153">Wearable sensors</option></select></label></div>
-<div class="sample-layout"><a id="sample-image-link" href="samples/images/CP-002421.png" aria-label="Open the full-resolution sample figure"><img id="sample-image" src="samples/images/CP-002421.png" alt="Working principle of a shape-morphing robotic module"><span class="enlarge" aria-hidden="true">Full size ↗</span></a>
-<div class="sample-body"><div class="sample-meta"><span id="sample-id">CP-002421</span><span id="sample-kind">Parallel integration</span></div>
-<p id="question">Read the printed circular-weight mass in the Shape A photograph in c and the U_t/U_s band-color combination at the leftmost Shape A endpoint in d. Which option is correct?</p>
-<details id="sample-context" hidden><summary>Panel notes</summary><p id="panel-notes"></p></details>
-<div class="options" id="options"></div><p id="feedback" role="status"></p>
-<a class="creditlink" id="image-credit" href="https://doi.org/10.1038/s41467-023-41708-6">Sun et al. · Fig. 2</a> <a class="creditlink" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>
-</div></div><p class="related"><a href="#run">Run these samples with your model</a></p></section>
-<section id="run" class="content section compact"><div><h2>Run the samples</h2><p class="prose">Try four original figure questions with your own vision model. The evaluator reports overall, parallel, and dependent answer accuracy.</p>
-<a class="textlink" href="https://github.com/lululualululu/CrossPanel#run-the-samples">Model setup &amp; prediction format <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18 18 6M7 6h11v11"/></svg></a></div>
-<div class="terminal"><div class="terminal-head"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m5 6 6 6-6 6m8 0h6"/></svg><span>Terminal</span><label><span class="sr">Choose a quickstart</span><select id="quickstart"><option value="model">Use your model</option><option value="fixture">Check the scorer</option></select></label></div><pre><code id="commands">git clone https://github.com/lululualululu/CrossPanel.git
-cd CrossPanel
-python3 -m evaluation predict \
-  --base-url http://localhost:8000/v1 \
-  --model YOUR_VISION_MODEL --output predictions.jsonl
-python3 -m evaluation score --predictions predictions.jsonl</code></pre><div class="terminal-foot" id="run-hint">Use the URL and model name of your vision server.</div></div>
-</section>
-<section id="results" class="content section compact"><div class="section-intro"><h2>The answer–evidence gap</h2><p class="prose">Across 15 models, <strong>8.42%–56.64%</strong> of correct answers on the diagnostic questions contain an explicit factual error.</p></div>
-<div class="chartbox" id="chartbox" hidden><div class="charthead"><h3>Model comparison</h3><label><span class="sr">Chart metric</span><select id="metric"><option value="joint">Joint correctness</option><option value="answer">Diagnostic answer accuracy</option><option value="overall">Main answer accuracy</option></select></label></div>
-<p class="chart-note" id="chart-note"></p><div id="ranking"></div></div>
-<details><summary>View scores for all 15 models</summary><div class="table-wrap" tabindex="0" role="region" aria-label="Model scores"><table><caption>Overall uses all 2,650 questions. Answer and Joint use the same 251 diagnostic questions. Error given correct is the share of correct diagnostic answers with an explicit error. All values are percentages.</caption><thead><tr><th scope="col">Model</th><th scope="col">Overall</th><th scope="col">Answer</th><th scope="col">Joint</th><th scope="col">Error given correct ↓</th></tr></thead><tbody><tr><th scope="row">Gemini 3.5 Flash-Lite</th><td>73.40</td><td>75.70</td><td>66.14</td><td>8.42</td></tr>
+<section id="results" class="content section">
+  <h2>The answer–evidence gap</h2>
+  <p class="prose">Across 15 models, <strong>8.42%–56.64% of correct answers</strong> on the diagnostic questions contain an explicit factual error. Requiring evidence can change the ranking: DeepSeek V4.1 Flash leads GPT-5.4 mini on answer accuracy, but GPT-5.4 mini leads on joint correctness.</p>
+  <figure><a class="figure-link" href="assets/pdfs/figure-4.pdf" aria-label="Open Figure 4 as PDF"><img src="assets/figures/figure-4.webp" width="2400" height="1648" alt="Answer and evidence outcomes and explicit factual errors for 15 models on the same 251 questions." loading="lazy"></a><figcaption><span>Factual errors can occur in several dimensions of one response.</span><a href="assets/pdfs/figure-4.pdf">Figure 4 PDF</a></figcaption></figure>
+  <div class="table-actions"><a href="results/table-2.csv" download>Download Table 2 (CSV)</a></div>
+  <details><summary>View scores for all 15 models</summary><div class="table-wrap" tabindex="0" role="region" aria-label="Model scores"><table><caption>Overall uses all 2,650 questions. Answer and Joint use the same 251 diagnostic questions. Error given correct is the share of correct diagnostic answers with an explicit error. All values are percentages.</caption><thead><tr><th scope="col">Model</th><th scope="col">Overall</th><th scope="col">Answer</th><th scope="col">Joint</th><th scope="col">Error given correct ↓</th></tr></thead><tbody><tr><th scope="row">Gemini 3.5 Flash-Lite</th><td>73.40</td><td>75.70</td><td>66.14</td><td>8.42</td></tr>
 <tr><th scope="row">GPT-5.4 mini</th><td>67.62</td><td>71.31</td><td>62.55</td><td>10.61</td></tr>
 <tr><th scope="row">Grok 4.3 <small>(reasoning disabled)</small></th><td>55.13</td><td>61.35</td><td>49.00</td><td>17.53</td></tr>
 <tr><th scope="row">GPT-4o <small>(2024-11-20)</small></th><td>44.98</td><td>52.99</td><td>37.45</td><td>24.81</td></tr>
@@ -63,7 +45,12 @@ python3 -m evaluation score --predictions predictions.jsonl</code></pre><div cla
 <tr><th scope="row">InternVL3.5-8B</th><td>39.51</td><td>44.22</td><td>19.52</td><td>44.14</td></tr>
 <tr><th scope="row">Gemma-3-27B-IT</th><td>39.47</td><td>46.22</td><td>19.12</td><td>48.28</td></tr>
 <tr><th scope="row">Molmo2-8B</th><td>34.53</td><td>45.02</td><td>14.34</td><td>56.64</td></tr></tbody></table></div></details>
-<div class="links"><a href="results/table-2.csv" download>Table 2 CSV <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18 18 6M7 6h11v11"/></svg></a><a href="assets/pdfs/figure-4.pdf">Evidence audit <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18 18 6M7 6h11v11"/></svg></a><a href="assets/pdfs/figure-5.pdf">Interventions <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18 18 6M7 6h11v11"/></svg></a></div></section>
+</section>
+<section id="interventions" class="content section">
+  <h2>What helps a model read the right target?</h2>
+  <p class="prose">On 57 questions, giving Qwen3.5-35B-A3B the verified object and condition raised correct target readouts from <strong>29 to 42</strong>. The hint withheld the requested measurement. Adding image tiles alone raised the count to 30.</p>
+  <figure><a class="figure-link" href="assets/pdfs/figure-5.pdf" aria-label="Open Figure 5 as PDF"><img src="assets/figures/figure-5.webp" width="2400" height="1421" alt="A worked example and paired results comparing hints, tiles, and their combination." loading="lazy"></a><figcaption><span>Verified context and additional views affect the three models differently.</span><a href="assets/pdfs/figure-5.pdf">Figure 5 PDF</a></figcaption></figure>
+</section>
 <section id="citation" class="content section"><h2>Citation</h2><p class="related"><a href="https://arxiv.org/abs/2611.28641">arXiv:2611.28641</a><a href="citation.bib" download>Download BibTeX</a></p><pre><code>@misc{lu2026crosspanel,
   title         = {{CrossPanel}: Exposing the Answer--Evidence Gap in Scientific Figure Understanding},
   author        = {Zhengyang Lu and {QianhongWen} and Chenpeng Wang and Qiang Huang and Ziyang Ling and Huan Li and {Chenziao} and Yibo Qiu and Xiaojie Cheng},
