@@ -1,6 +1,6 @@
 # CrossPanel: Exposing the Answer–Evidence Gap in Scientific Figure Understanding
 
-[Paper on arXiv](https://arxiv.org/abs/2611.28641) · [Project page](https://lululualululu.github.io/CrossPanel/) · [Table 2 (CSV)](results/table-2.csv) · [BibTeX](citation.bib)
+[Paper on arXiv](https://arxiv.org/abs/2611.28641) · [Project page](https://lululualululu.github.io/CrossPanel/) · [Run the samples](#run-the-samples) · [Table 2 (CSV)](results/table-2.csv) · [BibTeX](citation.bib)
 
 Zhengyang Lu\*, QianhongWen\*, Chenpeng Wang\*, Qiang Huang, Ziyang Ling, Huan Li, Chenziao, Yibo Qiu, and Xiaojie Cheng.
 
@@ -9,6 +9,32 @@ Zhengyang Lu\*, QianhongWen\*, Chenpeng Wang\*, Qiang Huang, Ziyang Ling, Huan L
 CrossPanel tests whether a model can follow the same experimental object and conditions across panels in a scientific figure. In the example below, Qwen3.5-4B selects the correct T-cell answer while attributing it to the wrong markers.
 
 [![Two worked examples showing how a correct choice can accompany an incorrect account of the figure.](assets/figures/figure-1.webp)](assets/pdfs/figure-1.pdf)
+
+## Run the samples
+
+Four original image questions, two parallel and two dependent. Python 3.9+ and its standard library are sufficient for the client and scorer.
+
+```bash
+git clone https://github.com/lululualululu/CrossPanel.git
+cd CrossPanel
+python3 -m evaluation score --predictions samples/example-predictions.jsonl
+```
+
+The included hand-written predictions score **2/4 (50%)**. To evaluate your own vision model, start a server that accepts image inputs at an OpenAI-compatible chat completions endpoint. Set its API root and served model name below. For an authenticated service, set `CROSSPANEL_API_KEY` in your shell.
+
+```bash
+python3 -m evaluation predict \
+  --base-url http://localhost:8000/v1 \
+  --model YOUR_VISION_MODEL \
+  --output predictions.jsonl
+python3 -m evaluation score --predictions predictions.jsonl
+```
+
+The client sends each original PNG and its prompt. It requests temperature 0 and up to 2,048 output tokens; use `--max-tokens` or `--timeout` to adjust. Use a fresh output path for each run. A local Ollama vision model can use `http://localhost:11434/v1` and its installed model name. For a thinking model that supports it, add `--reasoning-effort none` to request a shorter run.
+
+**Other inference frameworks.** Read [the prompts and image paths](samples/questions.jsonl), run your model, and write one JSON line per question with `id`, the raw response in `text`, and optionally `finish_reason` (use `length` when truncated). Then run the same score command. The answer extractor follows the paper's main-evaluation parser. The denominator includes all four questions, including missing or unparseable answers. The report includes overall and per-task accuracy and the parsed choice for each ID.
+
+These four public samples demonstrate answer scoring. The paper’s joint and evidence scores additionally require response-level annotations. [Sample details and figure credits](samples/README.md)
 
 ## Benchmark
 
