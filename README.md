@@ -1,45 +1,33 @@
-# CrossPanel
+# CrossPanel: Exposing the Answer–Evidence Gap in Scientific Figure Understanding
 
-**From Dispersed Observations to Grounded Experimental Conclusions**
+[Paper on arXiv](https://arxiv.org/abs/2611.28641) · [Project page](https://lululualululu.github.io/CrossPanel/) · [Table 2 (CSV)](results/table-2.csv) · [BibTeX](citation.bib)
 
-[Project page](https://lululualululu.github.io/CrossPanel/)
+Zhengyang Lu\*, QianhongWen\*, Chenpeng Wang\*, Qiang Huang, Ziyang Ling, Huan Li, Chenziao, Yibo Qiu, and Xiaojie Cheng.
 
-CrossPanel studies evidence-grounded reasoning across scientific figure panels, including object selection, condition resolution, cross-panel correspondence, and target evidence reading.
+\*Equal contribution.
 
-This is a preliminary project website. The manuscript, authorship information, dataset, evaluation code, and citation will be added when ready. The subtitle is descriptive project copy, not a finalized paper title.
+CrossPanel tests whether a model can follow the same experimental object and conditions across panels in a scientific figure. In the example below, Qwen3.5-4B selects the correct T-cell answer while attributing it to the wrong markers.
 
-## Current contents
+[![Two worked examples showing how a correct choice can accompany an incorrect account of the figure.](assets/figures/figure-1.webp)](assets/pdfs/figure-1.pdf)
 
-- Overview and task motivation
-- Dataset construction and distribution
-- Preliminary model comparison and case analysis
-- Five figures with full-resolution previews and font-embedded PDFs
+## Benchmark
 
-The current collection contains 2,650 questions (248 region-grounded and 2,402 dependency-oriented). Figure 4 reports a 251-question evaluation set; Figure 5 reports a 57-question analysis set. These scopes are distinct. Detailed evaluation protocols will accompany the manuscript.
+| Evaluation | Scope | What is measured |
+| --- | --- | --- |
+| Main evaluation | 2,650 questions across 8 disciplines | Answer accuracy on 495 parallel and 2,155 dependent questions |
+| Evidence audit | 251 questions × 15 models | Support for the stated object, condition, cross-panel binding, and local readout |
+| Controlled interventions | 57 questions | Changes in accuracy and target readout with verified context or additional image tiles |
 
-## Update the website
+## Results
 
-The site is plain HTML/CSS with no build dependencies. GitHub Pages serves `main` from the repository root.
+Across the 15 models, **8.42%–56.64% of correct answers** in the audit contain an explicit factual error. On the same 251 questions, DeepSeek V4.1 Flash scores higher than GPT-5.4 mini on answer accuracy (72.11% vs. 71.31%), while GPT-5.4 mini scores higher when the answer and all four facts must be correct (62.55% vs. 57.37%).
 
-- Edit title, introduction, resource links and section descriptions in `index.html`.
-- Edit typography, colors and responsive layout in `style.css`.
-- Replace `assets/figures/figure-1.webp` through `figure-5.webp` to update previews.
-- Replace the corresponding `assets/pdfs/figure-N.pdf` files to update downloadable figures.
-- Update image `width` and `height` attributes when aspect ratios change.
-- When paper/data/code links exist, replace the disabled `button.resource` elements with `a.resource` links and update the release note. Add the arXiv link when available.
-- Add the finalized authors/affiliations, abstract, release licenses and BibTeX only when confirmed.
-- Push to `main`; GitHub Pages automatically republishes the site.
+[Table 2](results/table-2.csv) contains all 15 rows from arXiv v1. Values are percentages. Parallel, Dependent, Macro, and Overall use the main evaluation. Macro gives equal weight to the two question types. The remaining columns use the audit: Joint requires a correct answer and support in all four dimensions. Error given correct uses only answer-correct responses as its denominator.
 
-Local preview:
+[Dataset construction](assets/pdfs/figure-2.pdf) · [Dataset composition](assets/pdfs/figure-3.pdf) · [Evidence audit](assets/pdfs/figure-4.pdf) · [Interventions](assets/pdfs/figure-5.pdf)
 
-```sh
-python3 -m http.server 8000
-```
+## Citation
 
-Then visit http://localhost:8000.
+[Cite the paper with BibTeX](citation.bib).
 
-## Attribution and rights
-
-Project-page organization is inspired by [MC-Bench](https://xuyunqiu.github.io/MC-Bench/). Website implementation is original; no template code was copied. Scientific figures may contain excerpts of third-party publications. No blanket license for the figures or future dataset is granted by this repository; release-specific licensing will be documented separately.
-
-Resource icons are from Font Awesome Free (CC BY 4.0); see `assets/icons/LICENSE.txt`.
+Scientific figure excerpts retain their original attributions. [Project-page icon credits](assets/icons/LICENSE.txt)
